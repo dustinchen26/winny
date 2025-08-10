@@ -8,7 +8,7 @@
         margin: 0;
         padding: 0;
         font-family: "Microsoft JhengHei", sans-serif;
-        background: url('your_photo.jpg') no-repeat center center/cover;
+        background: url('https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG') no-repeat center center/cover;
         height: 100vh;
         text-align: center;
         color: white;
@@ -46,18 +46,32 @@
         background-color: pink;
         color: white;
     }
-    #fireworks {
+    #fireworks, #hearts {
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
         pointer-events: none;
     }
+    .final-text {
+        font-size: 48px;
+        font-weight: bold;
+        background: linear-gradient(90deg, #ff7eb3, #ff758c, #ffb199);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: glow 2s infinite alternate;
+        margin-top: 50px;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #fff, 0 0 20px pink, 0 0 30px red; }
+        to { text-shadow: 0 0 20px #fff, 0 0 30px hotpink, 0 0 40px red; }
+    }
 </style>
 </head>
 <body>
 
-<audio id="bgm" autoplay loop>
-    <source src="romantic_piano.mp3" type="audio/mpeg">
+<!-- 背景音樂 -->
+<audio id="bgm" loop>
+    <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg">
 </audio>
 
 <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
@@ -66,6 +80,7 @@
 <div class="question" id="quiz"></div>
 
 <canvas id="fireworks"></canvas>
+<canvas id="hearts"></canvas>
 
 <script>
 const questions = [
@@ -114,7 +129,15 @@ function checkAnswer(ans) {
 
 loadQuestion();
 
-// 煙火動畫
+// 音樂播放控制
+const music = document.getElementById('bgm');
+music.play().catch(() => {
+    document.body.addEventListener('click', () => {
+        music.play();
+    }, { once: true });
+});
+
+// ===== 煙火動畫 =====
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -131,7 +154,6 @@ class Firework {
         this.y = canvas.height;
         this.targetY = random(100, canvas.height / 2);
         this.color = `hsl(${random(0,360)},100%,50%)`;
-        this.trail = [];
         this.exploded = false;
     }
     update() {
@@ -180,13 +202,51 @@ class Particle {
     }
 }
 
+// ===== 愛心雨動畫 =====
+const heartCanvas = document.getElementById("hearts");
+const hctx = heartCanvas.getContext("2d");
+heartCanvas.width = window.innerWidth;
+heartCanvas.height = window.innerHeight;
+let hearts = [];
+
+class Heart {
+    constructor() {
+        this.x = random(0, heartCanvas.width);
+        this.y = random(-50, -10);
+        this.size = random(10, 30);
+        this.speedY = random(1, 3);
+        this.color = `rgba(255, ${Math.floor(random(100,200))}, ${Math.floor(random(100,200))}, 0.8)`;
+    }
+    update() {
+        this.y += this.speedY;
+        if (this.y > heartCanvas.height) {
+            this.y = random(-50, -10);
+            this.x = random(0, heartCanvas.width);
+        }
+    }
+    draw() {
+        hctx.fillStyle = this.color;
+        hctx.beginPath();
+        hctx.moveTo(this.x, this.y);
+        hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2,
+                           this.x - this.size, this.y + this.size / 3,
+                           this.x, this.y + this.size);
+        hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3,
+                           this.x + this.size / 2, this.y - this.size / 2,
+                           this.x, this.y);
+        hctx.fill();
+    }
+}
+
 function startFireworks() {
-    quizDiv.innerHTML = `<h2>🎉 Winny，嫁給我吧！🎉</h2>`;
+    quizDiv.innerHTML = `<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
     setInterval(() => fireworks.push(new Firework()), 500);
+    for (let i = 0; i < 30; i++) hearts.push(new Heart());
     animate();
 }
 
 function animate() {
+    // 煙火
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     fireworks.forEach((f, i) => {
         f.update();
@@ -194,6 +254,14 @@ function animate() {
         if (f.exploded && f.life <= 0) fireworks.splice(i, 1);
     });
     fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
+
+    // 愛心
+    hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+    hearts.forEach(h => {
+        h.update();
+        h.draw();
+    });
+
     requestAnimationFrame(animate);
 }
 </script>
