@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>浪漫求婚給 Winny</title>
 <style>
     body {
@@ -36,45 +36,51 @@
         margin-top: 30px;
         font-size: 22px;
     }
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: rgba(139, 0, 84, 0.8);
-    color: white;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-button:hover {
-    background-color: rgba(255, 20, 147, 1); /* 亮粉紅色 */
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-}
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin: 10px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: rgba(139, 0, 84, 0.8);
+        color: white;
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    button:hover {
+        background-color: rgba(255, 20, 147, 1);
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+    }
     #fireworks, #hearts {
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
         pointer-events: none;
     }
-.final-text {
-    font-size: 48px;
-    font-weight: bold;
-    color: #ff1493; /* 深粉紅 */
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px 40px;
-    border-radius: 20px;
-    border: 3px solid #ff1493;
-    box-shadow: 0 0 15px #ff1493;
-    display: inline-block;
-    margin-top: 50px;
-    user-select: none;
-}
-
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #fff, 0 0 20px pink, 0 0 30px red; }
-        to { text-shadow: 0 0 20px #fff, 0 0 30px hotpink, 0 0 40px red; }
+    .final-text {
+        font-size: 48px;
+        font-weight: bold;
+        background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite, heartbeat 1.5s ease-in-out infinite;
+        padding: 20px 40px;
+        border-radius: 20px;
+        border: 3px solid #ff1493;
+        box-shadow: 0 0 15px #ff1493;
+        display: inline-block;
+        margin-top: 50px;
+        user-select: none;
+    }
+    @keyframes shine {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 200% 0%; }
+    }
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
     }
 </style>
 </head>
@@ -82,7 +88,7 @@ button:hover {
 
 <!-- 背景音樂 -->
 <audio id="bgm" loop>
-    <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg" />
 </audio>
 
 <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
@@ -166,6 +172,7 @@ class Firework {
         this.targetY = random(100, canvas.height / 2);
         this.color = `hsl(${random(0,360)},100%,50%)`;
         this.exploded = false;
+        this.life = 100;
     }
     update() {
         if (!this.exploded) {
@@ -173,6 +180,8 @@ class Firework {
             if (this.y <= this.targetY) {
                 this.explode();
             }
+        } else {
+            this.life--;
         }
     }
     draw() {
