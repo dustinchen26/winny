@@ -8,11 +8,21 @@
         margin: 0;
         padding: 0;
         font-family: "Microsoft JhengHei", sans-serif;
-        background: url('https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG') no-repeat center center/cover;
+        background-color: black; /* 留黑邊填充 */
         height: 100vh;
         text-align: center;
         color: white;
         overflow: hidden;
+        position: relative;
+    }
+    #bg-img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* 保留完整圖片比例 */
+        z-index: -1;
     }
     .heart {
         font-size: 80px;
@@ -65,7 +75,7 @@
         background-size: 200% 100%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: shine 3s linear infinite, heartbeat 1.5s ease-in-out infinite;
+        animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
         padding: 20px 40px;
         border-radius: 20px;
         border: 3px solid #ff1493;
@@ -78,13 +88,15 @@
         0% { background-position: 0% 0%; }
         100% { background-position: 200% 0%; }
     }
-    @keyframes heartbeat {
+    @keyframes heartbeat2 {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.1); }
     }
 </style>
 </head>
 <body>
+
+<img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
 
 <!-- 背景音樂 -->
 <audio id="bgm" loop>
@@ -93,7 +105,6 @@
 
 <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
 <div class="heart">❤</div>
-
 <div class="question" id="quiz"></div>
 
 <canvas id="fireworks"></canvas>
@@ -266,7 +277,6 @@ function startFireworks() {
 }
 
 function animate() {
-    // 煙火
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     fireworks.forEach((f, i) => {
         f.update();
@@ -275,7 +285,6 @@ function animate() {
     });
     fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
 
-    // 愛心
     hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
     hearts.forEach(h => {
         h.update();
@@ -285,6 +294,5 @@ function animate() {
     requestAnimationFrame(animate);
 }
 </script>
-
 </body>
 </html>
