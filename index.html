@@ -1,267 +1,376 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-<meta charset="UTF-8" />
-<title>浪漫求婚給 Winny</title>
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Microsoft JhengHei", sans-serif;
-    background-color: black;
-    height: 100vh;
-    color: white;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 從上方開始排列 */
-    align-items: center;
-    position: relative;
-    text-align: center;
-}
+    <meta charset="UTF-8" />
+    <title>浪漫求婚給 Winny</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: black;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
 
-#bg-img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: black;
-    z-index: -1;
-}
+        #bg-img {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* 保持完整照片 */
+            background-color: black;
+            z-index: -1;
+        }
 
-/* 控制整組內容與上方距離 */
-.content {
-    margin-top: 20vh; /* 改這裡的數字就能上下移 */
-}
+        .content {
+            margin-top: 20vh;
+        }
 
-/* 標題文字描邊加粗 + clamp */
-h1 {
-    font-size: clamp(24px, 6vw, 64px);
-    font-weight: 900;
-    text-shadow: 
-       3px 3px 0 #000,
-      -3px 3px 0 #000,
-       3px -3px 0 #000,
-      -3px -3px 0 #000,
-       3px 0px 0 #000,
-      -3px 0px 0 #000,
-       0px 3px 0 #000,
-       0px -3px 0 #000;
-    margin: 0 0 20px;
-}
+        h1 {
+            font-size: clamp(20px, 8vw, 50px);
+            /* 標題隨視窗自動縮放 */
+            font-weight: 900;
+            text-shadow:
+                3px 3px 0 #000,
+                -3px 3px 0 #000,
+                3px -3px 0 #000,
+                -3px -3px 0 #000,
+                3px 0px 0 #000,
+                -3px 0px 0 #000,
+                0px 3px 0 #000,
+                0px -3px 0 #000;
+            margin: 0 0 20px;
+        }
 
-.question {
-    background: rgba(0,0,0,0.5);
-    padding: 20px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column; /* 先讓題目文字和按鈕分開 */
-    gap: 15px;
-    font-size: clamp(24px, 5.5vw, 30px);
-    max-width: 70%;
-    align-items: center;
-    margin: 0 auto; /* 這行讓黑框無論如何都水平置中 */
-}
+        .question {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: clamp(24px, 5.5vw, 30px);
+            max-width: 70%;
+            align-items: center;
+            margin: 0 auto;
+        }
 
-/* 按鈕容器 */
-.options {
-    display: flex;
-    flex-wrap: wrap; /* 小螢幕不夠空間時自動換行 */
-    gap: 10px;
-    justify-content: center;
-}
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
 
-.question button {
-    padding: 10px 20px;
-    font-size: clamp(14px, 3vw, 20px);
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: rgba(139,0,84,0.8);
-    color: white;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
+        .question button {
+            padding: 10px 20px;
+            font-size: clamp(14px, 3vw, 20px);
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: rgba(139, 0, 84, 0.8);
+            color: white;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
 
-.final-text {
-    font-size: clamp(24px, 6vw, 48px);
-    font-weight: bold;
-    background: linear-gradient(90deg,#ff1493,#ff69b4,#ff1493,#ff69b4);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
-    padding: 20px 40px;
-    border-radius: 20px;
-    border: 3px solid #ff1493;
-    box-shadow: 0 0 15px #ff1493;
-    display: inline-block;
-    max-width: 90%;
-}
+        .final-text {
+            font-size: clamp(20px, 20vw, 40px);
+            /* 💍 Winny，嫁給我吧！💍, 最終標題隨視窗自動縮放 */
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 3px solid #ff1493;
+            box-shadow: 0 0 15px #ff1493;
+            display: inline-block;
+            max-width: 90%;
+        }
 
-#start-container {
-    margin-top: 20px;
-}
+        #start-container {
+            margin-top: 20px;
+        }
 
-#start-btn {
-    font-size: clamp(20px, 5vw, 28px);
-    padding: 15px 30px;
-    background-color: rgba(255,20,147,0.8);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-}
+        #start-btn {
+            font-size: clamp(20px, 5vw, 28px);
+            padding: 15px 30px;
+            background-color: rgba(255, 20, 147, 0.8);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
 
-/* 桌機 hover 效果 */
-@media (hover: hover) {
-    button:hover {
-        background-color: rgba(255,20,147,1);
-        transform: scale(1.1);
-        box-shadow: 0 0 10px rgba(255,20,147,0.7);
-    }
-}
+        @media (hover: hover) {
+            button:hover {
+                background-color: rgba(255, 20, 147, 1);
+                transform: scale(1.1);
+                box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+            }
+        }
 
-button.active {
-    background-color: rgba(255,20,147,1);
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255,20,147,0.7);
-}
+        button.active {
+            background-color: rgba(255, 20, 147, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
 
-/* 動畫 */
-@keyframes shine {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-}
+        @keyframes shine {
+            0% {
+                background-position: 0% 0%;
+            }
 
-@keyframes heartbeat2 {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
+            100% {
+                background-position: 200% 0%;
+            }
+        }
 
-#fireworks, #hearts {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-}
-</style>
+        @keyframes heartbeat2 {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        #fireworks,
+        #hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
 
-<img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
+    <img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
 
-<audio id="bgm" loop>
-    <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg" />
-</audio>
+    <audio id="bgm" loop>
+        <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3"
+            type="audio/mpeg" />
+    </audio>
 
-<!-- 包一層 content -->
-<div class="content">
-    <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
+    <div class="content">
+        <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
 
-    <div id="start-container">
-        <button id="start-btn">💖 點我開始 💖</button>
+        <div id="start-container">
+            <button id="start-btn">💖 點我開始 💖</button>
+        </div>
+
+        <div class="question" id="quiz" style="display:none;"></div>
     </div>
 
-    <div class="question" id="quiz" style="display:none;"></div>
-</div>
+    <canvas id="fireworks"></canvas>
+    <canvas id="hearts"></canvas>
 
-<canvas id="fireworks"></canvas>
-<canvas id="hearts"></canvas>
+    <script>
+        // 問題資料
+        const questions = [{
+                q: "Winny 最愛的人是誰？",
+                options: ["隔壁鄰居", "偶像明星", "Dustin"],
+                answer: "Dustin",
+                wrongMsg: "Winny～答案明明就在你心裡 ❤️"
+            },
+            {
+                q: "我們第一次約會的感覺是？",
+                options: ["無聊", "平淡", "甜到爆"],
+                answer: "甜到爆",
+                wrongMsg: "哼！我們那天明明超甜 😍"
+            },
+            {
+                q: "如果 Dustin 求婚，Winny 的答案是？",
+                options: ["不要", "再想想", "好啊 ❤️"],
+                answer: "好啊 ❤️",
+                wrongMsg: "再想想？不行！一定要現在答應 😘"
+            }
+        ];
 
-<script>
-// 問題資料
-const questions = [
-    { q: "Winny 最愛的人是誰？", options: ["隔壁鄰居", "偶像明星", "Dustin"], answer: "Dustin", wrongMsg: "Winny～答案明明就在你心裡 ❤️" },
-    { q: "我們第一次約會的感覺是？", options: ["無聊", "平淡", "甜到爆"], answer: "甜到爆", wrongMsg: "哼！我們那天明明超甜 😍" },
-    { q: "如果 Dustin 求婚，Winny 的答案是？", options: ["不要", "再想想", "好啊 ❤️"], answer: "好啊 ❤️", wrongMsg: "再想想？不行！一定要現在答應 😘" }
-];
+        let current = 0;
+        const quizDiv = document.getElementById("quiz");
+        const startBtn = document.getElementById("start-btn");
+        const startContainer = document.getElementById("start-container");
+        const music = document.getElementById('bgm');
 
-let current = 0;
-const quizDiv = document.getElementById("quiz");
-const startBtn = document.getElementById("start-btn");
-const startContainer = document.getElementById("start-container");
-const music = document.getElementById('bgm');
+        startBtn.addEventListener('click', () => {
+            music.play().catch(() => console.log("無法自動播放"));
+            startContainer.style.display = 'none';
+            quizDiv.style.display = 'flex';
+            loadQuestion();
+        });
 
-startBtn.addEventListener('click', () => {
-    music.play().catch(()=>console.log("無法自動播放"));
-    startContainer.style.display = 'none';
-    quizDiv.style.display = 'flex';
-    loadQuestion();
-});
+        function loadQuestion() {
+            let q = questions[current];
+            quizDiv.innerHTML = `<p>${q.q}</p><div class="options">` +
+                q.options.map(opt => `<button>${opt}</button>`).join("") +
+                `</div>`;
+            quizDiv.querySelectorAll("button").forEach(btn => {
+                btn.addEventListener("touchstart", () => btn.classList.add("active"));
+                btn.addEventListener("touchend", () => {
+                    btn.classList.remove("active");
+                    checkAnswer(btn.textContent);
+                });
+                btn.addEventListener("click", () => checkAnswer(btn.textContent));
+            });
+        }
 
-function loadQuestion() {
-    let q = questions[current];
-    quizDiv.innerHTML = `<p>${q.q}</p><div class="options">` +
-        q.options.map(opt=>`<button>${opt}</button>`).join("") +
-        `</div>`;
-    quizDiv.querySelectorAll("button").forEach(btn=>{
-        btn.addEventListener("touchstart", ()=>btn.classList.add("active"));
-        btn.addEventListener("touchend", ()=>{ btn.classList.remove("active"); checkAnswer(btn.textContent); });
-        btn.addEventListener("click", ()=>checkAnswer(btn.textContent));
-    });
-}
+        function checkAnswer(ans) {
+            if (ans === questions[current].answer) {
+                current++;
+                if (current < questions.length) loadQuestion();
+                else startFireworks();
+            } else {
+                alert(questions[current].wrongMsg);
+            }
+        }
 
-function checkAnswer(ans) {
-    if(ans===questions[current].answer){
-        current++;
-        if(current<questions.length) loadQuestion();
-        else startFireworks();
-    } else { alert(questions[current].wrongMsg); }
-}
+        // 煙火與愛心動畫
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+        const heartCanvas = document.getElementById("hearts");
+        const hctx = heartCanvas.getContext("2d");
+        let fireworks = [];
+        let hearts = [];
 
-// 煙火與愛心動畫
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-const heartCanvas = document.getElementById("hearts");
-const hctx = heartCanvas.getContext("2d");
-let fireworks = [];
-let hearts = [];
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
 
-function random(min,max){return Math.random()*(max-min)+min;}
+        class Firework {
+            constructor() {
+                this.x = random(0, canvas.width);
+                this.y = canvas.height;
+                this.targetY = random(100, canvas.height / 2);
+                this.color = `hsl(${random(0,360)},100%,50%)`;
+                this.exploded = false;
+                this.life = 100;
+            }
+            update() {
+                if (!this.exploded) {
+                    this.y -= 5;
+                    if (this.y <= this.targetY) this.explode();
+                } else {
+                    this.life--;
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            explode() {
+                this.exploded = true;
+                for (let i = 0; i < 50; i++) fireworks.push(new Particle(this.x, this.y, this.color));
+            }
+        }
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.speedX = random(-3, 3);
+                this.speedY = random(-3, 3);
+                this.life = 100;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life--;
+            }
+            draw() {
+                hctx.globalAlpha = this.life / 100;
+                hctx.fillStyle = this.color;
+                hctx.beginPath();
+                hctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                hctx.fill();
+                hctx.globalAlpha = 1;
+            }
+        }
 
-class Firework {
-    constructor(){this.x=random(0,canvas.width);this.y=canvas.height;this.targetY=random(100,canvas.height/2);this.color=`hsl(${random(0,360)},100%,50%)`;this.exploded=false;this.life=100;}
-    update(){if(!this.exploded){this.y-=5;if(this.y<=this.targetY)this.explode();}else{this.life--;} }
-    draw(){ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();}
-    explode(){this.exploded=true;for(let i=0;i<50;i++)fireworks.push(new Particle(this.x,this.y,this.color));}
-}
-class Particle {constructor(x,y,color){this.x=x;this.y=y;this.color=color;this.speedX=random(-3,3);this.speedY=random(-3,3);this.life=100;}
-update(){this.x+=this.speedX;this.y+=this.speedY;this.life--;}
-draw(){hctx.globalAlpha=this.life/100;hctx.fillStyle=this.color;hctx.beginPath();hctx.arc(this.x,this.y,2,0,Math.PI*2);hctx.fill();hctx.globalAlpha=1;}}
+        class Heart {
+            constructor() {
+                this.x = random(0, heartCanvas.width);
+                this.y = random(-50, -10);
+                this.size = random(10, 30);
+                this.speedY = random(1, 3);
+                this.color = `rgba(255,${Math.floor(random(100,200))},${Math.floor(random(100,200))},0.8)`;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y > heartCanvas.height) {
+                    this.y = random(-50, -10);
+                    this.x = random(0, heartCanvas.width);
+                }
+            }
+            draw() {
+                hctx.fillStyle = this.color;
+                hctx.beginPath();
+                hctx.moveTo(this.x, this.y);
+                hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this
+                    .size / 3, this.x, this.y + this.size);
+                hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this
+                    .size / 2, this.x, this.y);
+                hctx.fill();
+            }
+        }
 
-class Heart {constructor(){this.x=random(0,heartCanvas.width);this.y=random(-50,-10);this.size=random(10,30);this.speedY=random(1,3);this.color=`rgba(255,${Math.floor(random(100,200))},${Math.floor(random(100,200))},0.8)`;}
-update(){this.y+=this.speedY;if(this.y>heartCanvas.height){this.y=random(-50,-10);this.x=random(0,heartCanvas.width);} }
-draw(){hctx.fillStyle=this.color;hctx.beginPath();hctx.moveTo(this.x,this.y);hctx.bezierCurveTo(this.x-this.size/2,this.y-this.size/2,this.x-this.size,this.y+this.size/3,this.x,this.y+this.size);hctx.bezierCurveTo(this.x+this.size,this.y+this.size/3,this.x+this.size/2,this.y-this.size/2,this.x,this.y);hctx.fill();}}
+        function startFireworks() {
+            quizDiv.innerHTML = `<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
+            setInterval(() => fireworks.push(new Firework()), 500);
+            for (let i = 0; i < 30; i++) hearts.push(new Heart());
+            animate();
+        }
 
-function startFireworks(){
-    quizDiv.innerHTML=`<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
-    setInterval(()=>fireworks.push(new Firework()),500);
-    for(let i=0;i<30;i++)hearts.push(new Heart());
-    animate();
-}
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach((f, i) => {
+                f.update();
+                f.draw();
+                if (f.exploded && f.life <= 0) fireworks.splice(i, 1);
+            });
+            fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
 
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    fireworks.forEach((f,i)=>{f.update();f.draw();if(f.exploded&&f.life<=0)fireworks.splice(i,1);});
-    fireworks=fireworks.filter(f=>f.life>0||!f.exploded);
+            hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+            hearts.forEach(h => {
+                h.update();
+                h.draw();
+            });
 
-    hctx.clearRect(0,0,heartCanvas.width,heartCanvas.height);
-    hearts.forEach(h=>{h.update();h.draw();});
+            requestAnimationFrame(animate);
+        }
 
-    requestAnimationFrame(animate);
-}
-
-function resizeCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    heartCanvas.width = window.innerWidth;
-    heartCanvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-</script>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            heartCanvas.width = window.innerWidth;
+            heartCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
 </body>
+
 </html>
