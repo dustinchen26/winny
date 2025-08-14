@@ -4,114 +4,89 @@
 <meta charset="UTF-8" />
 <title>浪漫求婚給 Winny</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: "Microsoft JhengHei", sans-serif;
-        background-color: black;
-        height: 100vh;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-        position: relative;
-    }
-    #bg-img {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        z-index: -1;
-    }
-    .heart {
-        font-size: 80px;
-        animation: heartbeat 1s infinite alternate, colorchange 2s infinite;
-        margin-top: 20px;
-    }
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.3); }
-    }
-    @keyframes colorchange {
-        0% { color: red; }
-        50% { color: pink; }
-        100% { color: red; }
-    }
-    .question {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 20px;
-        border-radius: 15px;
-        display: inline-block;
-        margin-top: 30px;
-        font-size: 22px;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 18px;
-        margin: 10px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        background-color: rgba(139, 0, 84, 0.8);
-        color: white;
-        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    /* 桌機（滑鼠）用 hover 動畫, hover 只在支援 hover 的裝置上有效 */
-    @media (hover: hover) {
-        button:hover {
-            background-color: rgba(255, 20, 147, 1);
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-        }
-    }
-    /* 手機（觸控）用 active 動畫, 手機觸控亮起效果 */
-    button.active {
-        background-color: rgba(255, 20, 147, 1);
-        transform: scale(1.1);
-        box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-    }
-    #fireworks, #hearts {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-    }
-    .final-text {
-        font-size: 48px;
-        font-weight: bold;
-        background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
-        background-size: 200% 100%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
-        padding: 20px 40px;
-        border-radius: 20px;
-        border: 3px solid #ff1493;
-        box-shadow: 0 0 15px #ff1493;
-        display: inline-block;
-        margin-top: 50px;
-        user-select: none;
-    }
-    @keyframes shine {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 200% 0%; }
-    }
-    @keyframes heartbeat2 {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-    }
-
-    /* 起始按鈕置下 */
-    #start-container {
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft JhengHei", sans-serif;
+    background-color: black;
+    height: 100vh;
     text-align: center;
-    margin-top: 20vh; /* 距離頂端 20% 的視窗高度 */
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+#bg-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 保持比例完整顯示 */
+    background-color: black; /* 剩餘空白填黑色 */
+    z-index: -1;
+}
+
+/* 標題文字描邊加粗 */
+h1 {
+    font-size: 48px;
+    margin-top: 40px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 
+       4px 4px 0 #000,
+      -4px 4px 0 #000,
+       4px -4px 0 #000,
+      -4px -4px 0 #000,
+       4px 0px 0 #000,
+      -4px 0px 0 #000,
+       0px 4px 0 #000,
+       0px -4px 0 #000;
+}
+
+.heart { font-size: 80px; margin-top: 20px; }
+.question { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px; display: inline-block; margin-top: 30px; font-size: 22px; max-width: 90%; }
+button { padding: 10px 20px; font-size: 18px; margin: 10px; border-radius: 10px; border: none; cursor: pointer; background-color: rgba(139,0,84,0.8); color: white; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+.final-text { font-size: 48px; font-weight: bold; background: linear-gradient(90deg,#ff1493,#ff69b4,#ff1493,#ff69b4); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite; padding: 20px 40px; border-radius: 20px; border: 3px solid #ff1493; box-shadow: 0 0 15px #ff1493; display: inline-block; margin-top: 50px; user-select: none; max-width: 90%; }
+#start-container { text-align: center; margin-top: 20vh; }
+#start-btn { font-size: 28px; padding: 20px 40px; background-color: rgba(255,20,147,0.8); }
+
+/* 桌機 hover 效果 */
+@media (hover: hover) {
+    button:hover { background-color: rgba(255,20,147,1); transform: scale(1.1); box-shadow: 0 0 10px rgba(255,20,147,0.7); }
+}
+button.active { background-color: rgba(255,20,147,1); transform: scale(1.1); box-shadow: 0 0 10px rgba(255,20,147,0.7); }
+
+/* 手機直式自動放大文字和按鈕 */
+@media (max-width: 768px) and (orientation: portrait) {
+    h1 { 
+        font-size: 8vw; 
+        margin-top: 4vh; 
+        text-shadow: 
+           1.5vw 1.5vw 0 #000,
+          -1.5vw 1.5vw 0 #000,
+           1.5vw -1.5vw 0 #000,
+          -1.5vw -1.5vw 0 #000,
+           1.5vw 0px 0 #000,
+          -1.5vw 0px 0 #000,
+           0px 1.5vw 0 #000,
+           0px -1.5vw 0 #000;
+        font-weight: 900;
     }
-    #start-btn {
-        font-size: 28px;
-        padding: 20px 40px;
-        background-color: rgba(255, 20, 147, 0.8);
-    }
+    .question { font-size: 5vw; padding: 4vw; }
+    button { font-size: 5vw; padding: 3vw 5vw; margin: 3vw; }
+    .final-text { font-size: 12vw; padding: 3vw 5vw; }
+    #start-btn { font-size: 6vw; padding: 4vw 8vw; }
+}
+
+/* 心跳與文字動畫 */
+@keyframes heartbeat { 0% { transform: scale(1); } 100% { transform: scale(1.3); } }
+@keyframes colorchange { 0% { color: red; } 50% { color: pink; } 100% { color: red; } }
+@keyframes shine { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+@keyframes heartbeat2 { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+#fireworks, #hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -135,24 +110,9 @@
 
 <script>
 const questions = [
-    { 
-    	q: "Winny 最愛的人是誰？", 
-    	options: ["隔壁鄰居", "偶像明星", "Dustin"], 
-    	answer: "Dustin", 
-    	wrongMsg: "Winny～答案明明就在你心裡 ❤️" 
-    },
-    { 
-    	q: "我們第一次約會的感覺是？", 
-    	options: ["無聊", "平淡", "甜到爆"], 
-    	answer: "甜到爆", 
-    	wrongMsg: "哼！我們那天明明超甜 😍" 
-    },
-    { 
-    	q: "如果 Dustin 求婚，Winny 的答案是？", 
-   	 	options: ["不要", "再想想", "好啊 ❤️"], 
-    	answer: "好啊 ❤️", 
-   		wrongMsg: "再想想？不行！一定要現在答應 😘" 
-    }
+    { q: "Winny 最愛的人是誰？", options: ["隔壁鄰居", "偶像明星", "Dustin"], answer: "Dustin", wrongMsg: "Winny～答案明明就在你心裡 ❤️" },
+    { q: "我們第一次約會的感覺是？", options: ["無聊", "平淡", "甜到爆"], answer: "甜到爆", wrongMsg: "哼！我們那天明明超甜 😍" },
+    { q: "如果 Dustin 求婚，Winny 的答案是？", options: ["不要", "再想想", "好啊 ❤️"], answer: "好啊 ❤️", wrongMsg: "再想想？不行！一定要現在答應 😘" }
 ];
 
 let current = 0;
@@ -161,92 +121,82 @@ const startBtn = document.getElementById("start-btn");
 const startContainer = document.getElementById("start-container");
 const music = document.getElementById('bgm');
 
-// 點擊開始
 startBtn.addEventListener('click', () => {
-    music.play().catch(() => console.log("無法自動播放"));
+    music.play().catch(()=>console.log("無法自動播放"));
     startContainer.style.display = 'none';
     quizDiv.style.display = 'inline-block';
     loadQuestion();
 });
 
-// 題目載入函數
 function loadQuestion() {
     let q = questions[current];
-    quizDiv.innerHTML = `<p>${q.q}</p>` + q.options.map(opt => `<button>${opt}</button>`).join("");
-
-    // 手機觸控效果
-    quizDiv.querySelectorAll("button").forEach(btn => {
-        btn.addEventListener("touchstart", () => btn.classList.add("active"));
-        btn.addEventListener("touchend", () => {
-            btn.classList.remove("active");
-            checkAnswer(btn.textContent);
-        });
-        btn.addEventListener("touchcancel", () => btn.classList.remove("active"));
-        btn.addEventListener("click", () => checkAnswer(btn.textContent));
+    quizDiv.innerHTML = `<p>${q.q}</p>` + q.options.map(opt=>`<button>${opt}</button>`).join("");
+    quizDiv.querySelectorAll("button").forEach(btn=>{
+        btn.addEventListener("touchstart", ()=>btn.classList.add("active"));
+        btn.addEventListener("touchend", ()=>{ btn.classList.remove("active"); checkAnswer(btn.textContent); });
+        btn.addEventListener("touchcancel", ()=>btn.classList.remove("active"));
+        btn.addEventListener("click", ()=>checkAnswer(btn.textContent));
     });
 }
 
-// 答案檢查
 function checkAnswer(ans) {
-    if (ans === questions[current].answer) {
+    if(ans===questions[current].answer){
         current++;
-        if (current < questions.length) {
-            loadQuestion();
-        } else {
-            startFireworks();
-        }
-    } else {
-        alert(questions[current].wrongMsg);
-    }
+        if(current<questions.length) loadQuestion();
+        else startFireworks();
+    } else { alert(questions[current].wrongMsg); }
 }
 
 // ===== 煙火動畫 =====
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let fireworks = [];
-
-function random(min, max) { return Math.random() * (max - min) + min; }
-
-class Firework {
-    constructor() { this.x = random(0, canvas.width); this.y = canvas.height; this.targetY = random(100, canvas.height / 2); this.color = `hsl(${random(0,360)},100%,50%)`; this.exploded = false; this.life = 100; }
-    update() { if (!this.exploded) { this.y -= 5; if (this.y <= this.targetY) this.explode(); } else { this.life--; } }
-    draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, 3, 0, Math.PI * 2); ctx.fill(); }
-    explode() { this.exploded = true; for (let i = 0; i < 50; i++) fireworks.push(new Particle(this.x, this.y, this.color)); }
-}
-class Particle { constructor(x, y, color) { this.x = x; this.y = y; this.color = color; this.speedX = random(-3, 3); this.speedY = random(-3, 3); this.life = 100; } update() { this.x += this.speedX; this.y += this.speedY; this.life--; } draw() { ctx.globalAlpha = this.life / 100; ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, 2, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; } }
-
-// ===== 愛心雨動畫 =====
 const heartCanvas = document.getElementById("hearts");
 const hctx = heartCanvas.getContext("2d");
-heartCanvas.width = window.innerWidth;
-heartCanvas.height = window.innerHeight;
+let fireworks = [];
 let hearts = [];
 
-class Heart { 
-    constructor() { this.x = random(0, heartCanvas.width); this.y = random(-50, -10); this.size = random(10, 30); this.speedY = random(1, 3); this.color = `rgba(255, ${Math.floor(random(100,200))}, ${Math.floor(random(100,200))}, 0.8)`; } 
-    update() { this.y += this.speedY; if (this.y > heartCanvas.height) { this.y = random(-50, -10); this.x = random(0, heartCanvas.width); } } 
-    draw() { hctx.fillStyle = this.color; hctx.beginPath(); hctx.moveTo(this.x, this.y); hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size); hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y); hctx.fill(); } 
-}
+function random(min,max){return Math.random()*(max-min)+min;}
 
-function startFireworks() {
-    quizDiv.innerHTML = `<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
-    setInterval(() => fireworks.push(new Firework()), 500);
-    for (let i = 0; i < 30; i++) hearts.push(new Heart());
+class Firework {
+    constructor(){this.x=random(0,canvas.width);this.y=canvas.height;this.targetY=random(100,canvas.height/2);this.color=`hsl(${random(0,360)},100%,50%)`;this.exploded=false;this.life=100;}
+    update(){if(!this.exploded){this.y-=5;if(this.y<=this.targetY)this.explode();}else{this.life--;}}
+    draw(){ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();}
+    explode(){this.exploded=true;for(let i=0;i<50;i++)fireworks.push(new Particle(this.x,this.y,this.color));}
+}
+class Particle {constructor(x,y,color){this.x=x;this.y=y;this.color=color;this.speedX=random(-3,3);this.speedY=random(-3,3);this.life=100;}
+update(){this.x+=this.speedX;this.y+=this.speedY;this.life--;}
+draw(){hctx.globalAlpha=this.life/100;hctx.fillStyle=this.color;hctx.beginPath();hctx.arc(this.x,this.y,2,0,Math.PI*2);hctx.fill();hctx.globalAlpha=1;}}
+
+class Heart {constructor(){this.x=random(0,heartCanvas.width);this.y=random(-50,-10);this.size=random(10,30);this.speedY=random(1,3);this.color=`rgba(255,${Math.floor(random(100,200))},${Math.floor(random(100,200))},0.8)`;}
+update(){this.y+=this.speedY;if(this.y>heartCanvas.height){this.y=random(-50,-10);this.x=random(0,heartCanvas.width);}}
+draw(){hctx.fillStyle=this.color;hctx.beginPath();hctx.moveTo(this.x,this.y);hctx.bezierCurveTo(this.x-this.size/2,this.y-this.size/2,this.x-this.size,this.y+this.size/3,this.x,this.y+this.size);hctx.bezierCurveTo(this.x+this.size,this.y+this.size/3,this.x+this.size/2,this.y-this.size/2,this.x,this.y);hctx.fill();}}
+
+function startFireworks(){
+    quizDiv.innerHTML=`<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
+    setInterval(()=>fireworks.push(new Firework()),500);
+    for(let i=0;i<30;i++)hearts.push(new Heart());
     animate();
 }
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    fireworks.forEach((f, i) => { f.update(); f.draw(); if (f.exploded && f.life <= 0) fireworks.splice(i, 1); });
-    fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    fireworks.forEach((f,i)=>{f.update();f.draw();if(f.exploded&&f.life<=0)fireworks.splice(i,1);});
+    fireworks=fireworks.filter(f=>f.life>0||!f.exploded);
 
-    hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
-    hearts.forEach(h => { h.update(); h.draw(); });
+    hctx.clearRect(0,0,heartCanvas.width,heartCanvas.height);
+    hearts.forEach(h=>{h.update();h.draw();});
 
     requestAnimationFrame(animate);
 }
+
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    heartCanvas.width = window.innerWidth;
+    heartCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 </script>
 </body>
 </html>
