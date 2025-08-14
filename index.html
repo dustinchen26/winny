@@ -57,21 +57,19 @@
         color: white;
         transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
-    /* 桌機（滑鼠）用 hover 動畫 */
-    @media (hover: hover) and (pointer: fine) {
+    /* 桌機（滑鼠）用 hover 動畫, hover 只在支援 hover 的裝置上有效 */
+    @media (hover: hover) {
         button:hover {
             background-color: rgba(255, 20, 147, 1);
             transform: scale(1.1);
             box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
         }
     }
-    /* 手機（觸控）用 active 動畫 */
-    @media (hover: none) and (pointer: coarse) {
-        button:active {
-            background-color: rgba(255, 20, 147, 1);
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-        }
+    /* 手機（觸控）用 active 動畫, 手機觸控亮起效果 */
+    button.active {
+        background-color: rgba(255, 20, 147, 1);
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
     }
     #fireworks, #hearts {
         position: fixed;
@@ -149,8 +147,23 @@ const quizDiv = document.getElementById("quiz");
 function loadQuestion() {
     let q = questions[current];
     quizDiv.innerHTML = `<p>${q.q}</p>` + q.options.map(opt => 
-        `<button onclick="checkAnswer('${opt}')">${opt}</button>`
+        `<button>${opt}</button>`
     ).join("");
+
+    // 綁定按鈕觸控效果
+    quizDiv.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("touchstart", () => btn.classList.add("active"));
+        btn.addEventListener("touchend", () => {
+            btn.classList.remove("active");
+            checkAnswer(btn.textContent);
+        });
+        btn.addEventListener("touchcancel", () => btn.classList.remove("active"));
+    });
+
+    // 滑鼠點擊（桌面）
+    quizDiv.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => checkAnswer(btn.textContent));
+    });
 }
 
 function checkAnswer(ans) {
@@ -183,8 +196,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let fireworks = [];
 
-function random(min, max) { 
-	return Math.random() * (max - min) + min; 
+function random(min, max) {
+    return Math.random() * (max - min) + min;
 }
 
 class Firework {
