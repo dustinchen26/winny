@@ -8,7 +8,7 @@
         margin: 0;
         padding: 0;
         font-family: "Microsoft JhengHei", sans-serif;
-        background-color: black; /* 留黑邊填充 */
+        background-color: black;
         height: 100vh;
         text-align: center;
         color: white;
@@ -57,10 +57,13 @@
         color: white;
         transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
-    button:hover {
-        background-color: rgba(255, 20, 147, 1);
-        transform: scale(1.1);
-        box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+    /* 僅在支援 hover 的裝置上啟用 hover 效果 */
+    @media (hover: hover) {
+        button:hover {
+            background-color: rgba(255, 20, 147, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
     }
     #fireworks, #hearts {
         position: fixed;
@@ -112,23 +115,23 @@
 
 <script>
 const questions = [
-    {
-        q: "Winny 最愛的人是誰？",
-        options: ["隔壁鄰居", "偶像明星", "Dustin"],
-        answer: "Dustin",
-        wrongMsg: "Winny～答案明明就在你心裡 ❤️"
+    { 
+    	q: "Winny 最愛的人是誰？", 
+    	options: ["隔壁鄰居", "偶像明星", "Dustin"], 
+    	answer: "Dustin", 
+    	wrongMsg: "Winny～答案明明就在你心裡 ❤️" 
     },
-    {
-        q: "我們第一次約會的感覺是？",
-        options: ["無聊", "平淡", "甜到爆"],
-        answer: "甜到爆",
-        wrongMsg: "哼！我們那天明明超甜 😍"
+    { 
+    	q: "我們第一次約會的感覺是？", 
+    	options: ["無聊", "平淡", "甜到爆"], 
+    	answer: "甜到爆", 
+    	wrongMsg: "哼！我們那天明明超甜 😍" 
     },
-    {
-        q: "如果 Dustin 求婚，Winny 的答案是？",
-        options: ["不要", "再想想", "好啊 ❤️"],
-        answer: "好啊 ❤️",
-        wrongMsg: "再想想？不行！一定要現在答應 😘"
+    { 
+    	q: "如果 Dustin 求婚，Winny 的答案是？", 
+    	options: ["不要", "再想想", "好啊 ❤️"], 
+    	answer: "好啊 ❤️", 
+    	wrongMsg: "再想想？不行！一定要現在答應 😘" 
     }
 ];
 
@@ -188,9 +191,8 @@ class Firework {
     update() {
         if (!this.exploded) {
             this.y -= 5;
-            if (this.y <= this.targetY) {
-                this.explode();
-            }
+            if (this.y <= this.targetY) 
+            	this.explode();
         } else {
             this.life--;
         }
