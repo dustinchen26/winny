@@ -57,9 +57,17 @@
         color: white;
         transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
-    /* 僅在支援 hover 的裝置上啟用 hover 效果 */
-    @media (hover: hover) {
+    /* 桌機（滑鼠）用 hover 動畫 */
+    @media (hover: hover) and (pointer: fine) {
         button:hover {
+            background-color: rgba(255, 20, 147, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
+    }
+    /* 手機（觸控）用 active 動畫 */
+    @media (hover: none) and (pointer: coarse) {
+        button:active {
             background-color: rgba(255, 20, 147, 1);
             transform: scale(1.1);
             box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
@@ -129,9 +137,9 @@ const questions = [
     },
     { 
     	q: "如果 Dustin 求婚，Winny 的答案是？", 
-    	options: ["不要", "再想想", "好啊 ❤️"], 
+   	 	options: ["不要", "再想想", "好啊 ❤️"], 
     	answer: "好啊 ❤️", 
-    	wrongMsg: "再想想？不行！一定要現在答應 😘" 
+   		wrongMsg: "再想想？不行！一定要現在答應 😘" 
     }
 ];
 
@@ -175,8 +183,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let fireworks = [];
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
+function random(min, max) { 
+	return Math.random() * (max - min) + min; 
 }
 
 class Firework {
@@ -191,8 +199,7 @@ class Firework {
     update() {
         if (!this.exploded) {
             this.y -= 5;
-            if (this.y <= this.targetY) 
-            	this.explode();
+            if (this.y <= this.targetY) this.explode();
         } else {
             this.life--;
         }
