@@ -39,8 +39,7 @@
         }
 
         h1 {
-            font-size: clamp(20px, 8vw, 50px);
-            /* 標題隨視窗自動縮放 */
+            font-size: clamp(20px, 8vw, 50px);            /* 標題隨視窗自動縮放 */
             font-weight: 900;
             text-shadow:
                 3px 3px 0 #000,
@@ -52,6 +51,7 @@
                 0px 3px 0 #000,
                 0px -3px 0 #000;
             margin: 0 0 20px;
+    white-space: nowrap; /* 強制不換行 */
         }
 
         .question {
@@ -86,8 +86,9 @@
         }
 
         .final-text {
-            font-size: clamp(20px, 20vw, 40px);
-            /* 💍 Winny，嫁給我吧！💍, 最終標題隨視窗自動縮放 */
+    white-space: nowrap;
+    display: inline-block;
+            font-size: clamp(20px, 20vw, 35px);            /* 💍 Winny，嫁給我吧！💍, 最終標題隨視窗自動縮放 */
             font-weight: bold;
             background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
             background-size: 200% 100%;
