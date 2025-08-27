@@ -2,380 +2,472 @@
 <html lang="zh">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>浪漫求婚給 Winny</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Microsoft JhengHei", sans-serif;
-            background-color: black;
-            height: 100vh;
-            color: white;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            position: relative;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <title>浪漫求婚給 Winny</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft JhengHei", sans-serif;
+      background-color: black;
+      height: 100vh;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      text-align: center;
+    }
 
-        #bg-img {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background-color: black;
-            z-index: -1;
-        }
+    #bg-img {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: black;
+      z-index: -1;
+    }
 
-        .content {
-            margin-top: 20vh;
-        }
+    .content {
+      margin-top: 20vh;
+    }
 
-        h1 {
-            font-size: clamp(20px, 8vw, 50px);
-            font-weight: 900;
-            text-shadow:
-                3px 3px 0 #000,
-                -3px 3px 0 #000,
-                3px -3px 0 #000,
-                -3px -3px 0 #000,
-                3px 0px 0 #000,
-                -3px 0px 0 #000,
-                0px 3px 0 #000,
-                0px -3px 0 #000;
-            margin: 0 0 20px;
-            white-space: nowrap;
-        }
+    h1 {
+      font-size: clamp(20px, 8vw, 50px);
+      font-weight: 900;
+      text-shadow:
+        3px 3px 0 #000,
+        -3px 3px 0 #000,
+        3px -3px 0 #000,
+        -3px -3px 0 #000,
+        3px 0px 0 #000,
+        -3px 0px 0 #000,
+        0px 3px 0 #000,
+        0px -3px 0 #000;
+      margin: 0 0 20px;
+      white-space: nowrap;
+    }
 
-        .question {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            font-size: clamp(24px, 5.5vw, 30px);
-            max-width: 70%;
-            align-items: center;
-            margin: 0 auto;
-        }
+    .question {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      font-size: clamp(24px, 5.5vw, 30px);
+      max-width: 70%;
+      align-items: center;
+      margin: 0 auto;
+    }
 
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
 
-        .question button {
-            padding: 10px 20px;
-            font-size: clamp(14px, 3vw, 20px);
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            background-color: rgba(139, 0, 84, 0.8);
-            color: white;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-        }
+    .question button {
+      padding: 10px 20px;
+      font-size: clamp(14px, 3vw, 20px);
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background-color: rgba(139, 0, 84, 0.8);
+      color: white;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
 
-        .final-text {
-            white-space: nowrap;
-            display: inline-block;
-            font-size: clamp(20px, 20vw, 35px);
-            font-weight: bold;
-            background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
-            padding: 20px 40px;
-            border-radius: 20px;
-            border: 3px solid #ff1493;
-            box-shadow: 0 0 15px #ff1493;
-            display: inline-block;
-            max-width: 90%;
-        }
+    .final-text {
+      white-space: nowrap;
+      display: inline-block;
+      font-size: clamp(20px, 20vw, 35px);
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite, heartbeat2 1.5s ease-in-out infinite;
+      padding: 20px 40px;
+      border-radius: 20px;
+      border: 3px solid #ff1493;
+      box-shadow: 0 0 15px #ff1493;
+      display: inline-block;
+      max-width: 90%;
+    }
 
-        #start-container {
-            margin-top: 20px;
-        }
+    #start-container {
+      margin-top: 20px;
+    }
 
-        #start-btn {
-            font-size: clamp(20px, 5vw, 28px);
-            padding: 15px 30px;
-            background-color: rgba(255, 20, 147, 0.8);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
+    #start-btn {
+      font-size: clamp(20px, 5vw, 28px);
+      padding: 15px 30px;
+      background-color: rgba(255, 20, 147, 0.8);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
 
-        @media (hover: hover) {
-            button:hover {
-                background-color: rgba(255, 20, 147, 1);
-                transform: scale(1.1);
-                box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-            }
-        }
+    @media (hover: hover) {
+      button:hover {
+        background-color: rgba(255, 20, 147, 1);
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+      }
+    }
 
-        button.active {
-            background-color: rgba(255, 20, 147, 1);
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-        }
+    button.active {
+      background-color: rgba(255, 20, 147, 1);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+    }
 
-        @keyframes shine {
-            0% {
-                background-position: 0% 0%;
-            }
+    @keyframes shine {
+      0% {
+        background-position: 0% 0%;
+      }
 
-            100% {
-                background-position: 200% 0%;
-            }
-        }
+      100% {
+        background-position: 200% 0%;
+      }
+    }
 
-        @keyframes heartbeat2 {
-            0%,
-            100% {
-                transform: scale(1);
-            }
+    @keyframes heartbeat2 {
+      0%,
+      100% {
+        transform: scale(1);
+      }
 
-            50% {
-                transform: scale(1.1);
-            }
-        }
+      50% {
+        transform: scale(1.1);
+      }
+    }
 
-        #fireworks,
-        #hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-    </style>
+    #fireworks,
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* 浪漫彈窗 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+      z-index: 1000;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup {
+      background: white;
+      color: black;
+      border-radius: 20px;
+      padding: 25px;
+      width: 280px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transform: scale(0.8);
+      transition: transform 0.3s;
+      animation: floatIn 0.4s ease;
+      position: relative;
+    }
+
+    .overlay.show .popup {
+      transform: scale(1);
+    }
+
+    .popup .heart {
+      font-size: 40px;
+      color: #ff3366;
+      animation: heartbeat 1s infinite;
+      margin-bottom: 10px;
+    }
+
+    .popup button {
+      margin-top: 15px;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff3366;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .popup button:hover {
+      background: #cc2952;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.8); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
 </head>
 
 <body>
 
-    <img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
+  <img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
 
-    <audio id="bgm" loop>
-        <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg" />
-    </audio>
+  <audio id="bgm" loop>
+    <source src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/output.mp3" type="audio/mpeg" />
+  </audio>
 
-    <div class="content">
-        <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
+  <div class="content">
+    <h1>💖 Dustin 對 Winny 的浪漫告白 💖</h1>
 
-        <div id="start-container">
-            <button id="start-btn">💖 點我開始 💖</button>
-        </div>
-
-        <div class="question" id="quiz" style="display:none;"></div>
+    <div id="start-container">
+      <button id="start-btn">💖 點我開始 💖</button>
     </div>
 
-    <canvas id="fireworks"></canvas>
-    <canvas id="hearts"></canvas>
+    <div class="question" id="quiz" style="display:none;"></div>
+  </div>
 
-    <script>
-        // 問題資料（每個選項都有自己的錯誤提示）
-        const questions = [
-            {
-                q: "Winny 最愛的人是誰？",
-                options: [
-                    { text: "隔壁鄰居", wrongMsg: "🤣 才不是隔壁阿伯啦！" },
-                    { text: "偶像明星", wrongMsg: "追星可以，但老公是 Dustin！💖" },
-                    { text: "Dustin" }
-                ],
-                answer: "Dustin"
-            },
-            {
-                q: "我們第一次約會的感覺是？",
-                options: [
-                    { text: "無聊", wrongMsg: "😡 你說啥？再說一次試試！" },
-                    { text: "平淡", wrongMsg: "哪有～明明心跳加速！💓" },
-                    { text: "甜到爆" }
-                ],
-                answer: "甜到爆"
-            },
-            {
-                q: "如果 Dustin 求婚，Winny 的答案是？",
-                options: [
-                    { text: "不要", wrongMsg: "😭 不行！一定要嫁給我！" },
-                    { text: "再想想", wrongMsg: "哼～再想想？現在就答應！😘" },
-                    { text: "好啊 ❤️" }
-                ],
-                answer: "好啊 ❤️"
-            }
-        ];
+  <canvas id="fireworks"></canvas>
+  <canvas id="hearts"></canvas>
 
-        let current = 0;
-        const quizDiv = document.getElementById("quiz");
-        const startBtn = document.getElementById("start-btn");
-        const startContainer = document.getElementById("start-container");
-        const music = document.getElementById('bgm');
+  <!-- 浪漫彈窗 -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <div class="heart">♥</div>
+      <p id="popupMessage">這是彈窗訊息</p>
+      <button onclick="closePopup()">知道了 💖</button>
+    </div>
+  </div>
 
-        startBtn.addEventListener('click', () => {
-            music.play().catch(() => console.log("無法自動播放"));
-            startContainer.style.display = 'none';
-            quizDiv.style.display = 'flex';
-            loadQuestion();
+  <script>
+    // 問題資料
+    const questions = [
+      {
+        q: "Winny 最愛的人是誰？",
+        options: [
+          { text: "隔壁鄰居", wrongMsg: "🤣 才不是隔壁阿伯啦！" },
+          { text: "偶像明星", wrongMsg: "追星可以，但老公是 Dustin！💖" },
+          { text: "Dustin" }
+        ],
+        answer: "Dustin"
+      },
+      {
+        q: "我們第一次約會的感覺是？",
+        options: [
+          { text: "無聊", wrongMsg: "😡 你說啥？再說一次試試！" },
+          { text: "平淡", wrongMsg: "哪有～明明心跳加速！💓" },
+          { text: "甜到爆" }
+        ],
+        answer: "甜到爆"
+      },
+      {
+        q: "如果 Dustin 求婚，Winny 的答案是？",
+        options: [
+          { text: "不要", wrongMsg: "😭 不行！一定要嫁給我！" },
+          { text: "再想想", wrongMsg: "哼～再想想？現在就答應！😘" },
+          { text: "好啊 ❤️" }
+        ],
+        answer: "好啊 ❤️"
+      }
+    ];
+
+    let current = 0;
+    const quizDiv = document.getElementById("quiz");
+    const startBtn = document.getElementById("start-btn");
+    const startContainer = document.getElementById("start-container");
+    const music = document.getElementById('bgm');
+
+    startBtn.addEventListener('click', () => {
+      music.play().catch(() => console.log("無法自動播放"));
+      startContainer.style.display = 'none';
+      quizDiv.style.display = 'flex';
+      loadQuestion();
+    });
+
+    function loadQuestion() {
+      let q = questions[current];
+      quizDiv.innerHTML = `<p>${q.q}</p><div class="options">` +
+        q.options.map(opt => `<button>${opt.text}</button>`).join("") +
+        `</div>`;
+      quizDiv.querySelectorAll("button").forEach((btn, idx) => {
+        btn.addEventListener("touchstart", () => btn.classList.add("active"));
+        btn.addEventListener("touchend", () => {
+          btn.classList.remove("active");
+          checkAnswer(q.options[idx]);
         });
+        btn.addEventListener("click", () => checkAnswer(q.options[idx]));
+      });
+    }
 
-        function loadQuestion() {
-            let q = questions[current];
-            quizDiv.innerHTML = `<p>${q.q}</p><div class="options">` +
-                q.options.map(opt => `<button>${opt.text}</button>`).join("") +
-                `</div>`;
-            quizDiv.querySelectorAll("button").forEach((btn, idx) => {
-                btn.addEventListener("touchstart", () => btn.classList.add("active"));
-                btn.addEventListener("touchend", () => {
-                    btn.classList.remove("active");
-                    checkAnswer(q.options[idx]);
-                });
-                btn.addEventListener("click", () => checkAnswer(q.options[idx]));
-            });
+    function checkAnswer(option) {
+      if (option.text === questions[current].answer) {
+        current++;
+        if (current < questions.length) loadQuestion();
+        else startFireworks();
+      } else {
+        showPopup(option.wrongMsg || "答錯了喔～再試一次！💔");
+      }
+    }
+
+    // 彈窗函式
+    function showPopup(message) {
+      document.getElementById("popupMessage").innerText = message;
+      document.getElementById("overlay").classList.add("show");
+    }
+
+    function closePopup() {
+      document.getElementById("overlay").classList.remove("show");
+    }
+
+    // 煙火與愛心動畫（略，跟你原本一樣）
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    const heartCanvas = document.getElementById("hearts");
+    const hctx = heartCanvas.getContext("2d");
+    let fireworks = [];
+    let hearts = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    class Firework {
+      constructor() {
+        this.x = random(0, canvas.width);
+        this.y = canvas.height;
+        this.targetY = random(100, canvas.height / 2);
+        this.color = `hsl(${random(0, 360)},100%,50%)`;
+        this.exploded = false;
+        this.life = 100;
+      }
+      update() {
+        if (!this.exploded) {
+          this.y -= 5;
+          if (this.y <= this.targetY) this.explode();
+        } else {
+          this.life--;
         }
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      explode() {
+        this.exploded = true;
+        for (let i = 0; i < 50; i++) fireworks.push(new Particle(this.x, this.y, this.color));
+      }
+    }
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speedX = random(-3, 3);
+        this.speedY = random(-3, 3);
+        this.life = 100;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.life--;
+      }
+      draw() {
+        hctx.globalAlpha = this.life / 100;
+        hctx.fillStyle = this.color;
+        hctx.beginPath();
+        hctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        hctx.fill();
+        hctx.globalAlpha = 1;
+      }
+    }
 
-        function checkAnswer(option) {
-            if (option.text === questions[current].answer) {
-                current++;
-                if (current < questions.length) loadQuestion();
-                else startFireworks();
-            } else {
-                alert(option.wrongMsg || "答錯了喔～再試一次！💔");
-            }
+    class Heart {
+      constructor() {
+        this.x = random(0, heartCanvas.width);
+        this.y = random(-50, -10);
+        this.size = random(10, 30);
+        this.speedY = random(1, 3);
+        this.color = `rgba(255,${Math.floor(random(100, 200))},${Math.floor(random(100, 200))},0.8)`;
+      }
+      update() {
+        this.y += this.speedY;
+        if (this.y > heartCanvas.height) {
+          this.y = random(-50, -10);
+          this.x = random(0, heartCanvas.width);
         }
+      }
+      draw() {
+        hctx.fillStyle = this.color;
+        hctx.beginPath();
+        hctx.moveTo(this.x, this.y);
+        hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
+        hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
+        hctx.fill();
+      }
+    }
 
-        // 煙火與愛心動畫
-        const canvas = document.getElementById("fireworks");
-        const ctx = canvas.getContext("2d");
-        const heartCanvas = document.getElementById("hearts");
-        const hctx = heartCanvas.getContext("2d");
-        let fireworks = [];
-        let hearts = [];
+    function startFireworks() {
+      quizDiv.innerHTML = `<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
+      setInterval(() => fireworks.push(new Firework()), 500);
+      for (let i = 0; i < 30; i++) hearts.push(new Heart());
+      animate();
+    }
 
-        function random(min, max) {
-            return Math.random() * (max - min) + min;
-        }
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      fireworks.forEach((f, i) => {
+        f.update();
+        f.draw();
+        if (f.exploded && f.life <= 0) fireworks.splice(i, 1);
+      });
+      fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
 
-        class Firework {
-            constructor() {
-                this.x = random(0, canvas.width);
-                this.y = canvas.height;
-                this.targetY = random(100, canvas.height / 2);
-                this.color = `hsl(${random(0, 360)},100%,50%)`;
-                this.exploded = false;
-                this.life = 100;
-            }
-            update() {
-                if (!this.exploded) {
-                    this.y -= 5;
-                    if (this.y <= this.targetY) this.explode();
-                } else {
-                    this.life--;
-                }
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            explode() {
-                this.exploded = true;
-                for (let i = 0; i < 50; i++) fireworks.push(new Particle(this.x, this.y, this.color));
-            }
-        }
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x;
-                this.y = y;
-                this.color = color;
-                this.speedX = random(-3, 3);
-                this.speedY = random(-3, 3);
-                this.life = 100;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life--;
-            }
-            draw() {
-                hctx.globalAlpha = this.life / 100;
-                hctx.fillStyle = this.color;
-                hctx.beginPath();
-                hctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                hctx.fill();
-                hctx.globalAlpha = 1;
-            }
-        }
+      hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+      hearts.forEach(h => {
+        h.update();
+        h.draw();
+      });
 
-        class Heart {
-            constructor() {
-                this.x = random(0, heartCanvas.width);
-                this.y = random(-50, -10);
-                this.size = random(10, 30);
-                this.speedY = random(1, 3);
-                this.color = `rgba(255,${Math.floor(random(100, 200))},${Math.floor(random(100, 200))},0.8)`;
-            }
-            update() {
-                this.y += this.speedY;
-                if (this.y > heartCanvas.height) {
-                    this.y = random(-50, -10);
-                    this.x = random(0, heartCanvas.width);
-                }
-            }
-            draw() {
-                hctx.fillStyle = this.color;
-                hctx.beginPath();
-                hctx.moveTo(this.x, this.y);
-                hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
-                hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
-                hctx.fill();
-            }
-        }
+      requestAnimationFrame(animate);
+    }
 
-        function startFireworks() {
-            quizDiv.innerHTML = `<div class="final-text">💍 Winny，嫁給我吧！💍</div>`;
-            setInterval(() => fireworks.push(new Firework()), 500);
-            for (let i = 0; i < 30; i++) hearts.push(new Heart());
-            animate();
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            fireworks.forEach((f, i) => {
-                f.update();
-                f.draw();
-                if (f.exploded && f.life <= 0) fireworks.splice(i, 1);
-            });
-            fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
-
-            hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
-            hearts.forEach(h => {
-                h.update();
-                h.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            heartCanvas.width = window.innerWidth;
-            heartCanvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-    </script>
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      heartCanvas.width = window.innerWidth;
+      heartCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  </script>
 </body>
 </html>
