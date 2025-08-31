@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
   <title>浪漫求婚給 Winny</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Microsoft JhengHei", sans-serif;
-      height: 100vh;
-      color: white;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      position: relative;
-      text-align: center;
-      background-color: black;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-    /* ✅ 修正背景圖細線問題 */
+    /* 背景照片完整顯示 */
     #bg-img {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 改成 cover，避免 iPhone 產生邊界線 */
+      object-fit: contain;
       background-color: black;
       z-index: -2;
-      display: block;
-      backface-visibility: hidden;
-      -webkit-transform: translateZ(0); /* 強制 GPU 重繪，防止細線 */
     }
 
-    .content {
-      margin-top: 20vh;
-      z-index: 10;
-      text-align: center;
-    }
+.content {
+    position: absolute;
+    color: white;
+    font-family: "Microsoft JhengHei", sans-serif;
+    text-align: center;
+    top: 15%; /* 新增：整個內容偏上，可微調百分比 */
+    left: 50%;
+    transform: translateX(-50%);
+}
 
     h1 {
       font-size: clamp(20px, 8vw, 50px);
@@ -62,6 +60,7 @@
       -webkit-text-fill-color: transparent;
       padding: 10px 20px;
       border-radius: 15px;
+      /* 移除邊框和光標線，避免出現白/粉細線 */
       border: none;
       box-shadow: none;
       margin: 20px auto 0;
@@ -90,6 +89,7 @@
       justify-content: center;
     }
 
+    /* 修正 iPhone 按鈕點擊時的白/粉細線 */
     button,
     #start-btn {
       padding: 10px 20px;
@@ -129,11 +129,16 @@
     }
 
     @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
     }
 
-    /* ✅ 修正 canvas 細線問題 */
     #fireworks,
     #hearts {
       position: fixed;
@@ -143,11 +148,9 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      display: block;
-      backface-visibility: hidden;
-      -webkit-transform: translateZ(0);
     }
 
+    /* 浪漫彈窗 */
     .overlay {
       position: fixed;
       top: 0;
@@ -213,11 +216,19 @@
     }
 
     @keyframes floatIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.8); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
   </style>
 </head>
+
 <body>
   <img id="bg-img" src="https://raw.githubusercontent.com/dustinchen26/winny/refs/heads/master/01.JPG" alt="背景圖">
 
@@ -340,4 +351,5 @@
     resizeCanvas();
   </script>
 </body>
+
 </html>
