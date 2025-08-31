@@ -61,12 +61,12 @@
       -webkit-text-fill-color: transparent;
       padding: 10px 20px;
       border-radius: 15px;
-      border: 2px solid #ff1493;
-      box-shadow: 0 0 15px #ff1493;
+      /* 移除邊框和光標線，避免出現白/粉細線 */
+      border: none;
+      box-shadow: none;
       margin: 20px auto 0;
-      display: block;
-      overflow: hidden; /* 打字機效果 */
-      border-right: 2px solid #ff1493; /* 光標效果 */
+      display: inline-block;
+      overflow: hidden;
     }
 
     .question {
@@ -91,7 +91,8 @@
     }
 
     /* 修正 iPhone 按鈕點擊時的白/粉細線 */
-    button, #start-btn {
+    button,
+    #start-btn {
       padding: 10px 20px;
       font-size: clamp(14px, 3vw, 20px);
       border-radius: 10px;
@@ -129,8 +130,14 @@
     }
 
     @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
     }
 
     #fireworks,
@@ -210,8 +217,15 @@
     }
 
     @keyframes floatIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.8); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
   </style>
 </head>
@@ -297,10 +311,10 @@
     const hctx = heartCanvas.getContext("2d");
     let fireworks = [], hearts = [];
 
-    function random(min,max){return Math.random()*(max-min)+min;}
-    class Firework { constructor(){this.x=random(0,canvas.width);this.y=canvas.height;this.targetY=random(100,canvas.height/2);this.color=`hsl(${random(0,360)},100%,50%)`;this.exploded=false;this.life=100;} update(){if(!this.exploded){this.y-=5;if(this.y<=this.targetY) this.explode();} else this.life--;} draw(){ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();} explode(){this.exploded=true;for(let i=0;i<50;i++)fireworks.push(new Particle(this.x,this.y,this.color));} }
-    class Particle { constructor(x,y,color){this.x=x;this.y=y;this.color=color;this.speedX=random(-3,3);this.speedY=random(-3,3);this.life=100;} update(){this.x+=this.speedX;this.y+=this.speedY;this.life--;} draw(){hctx.globalAlpha=this.life/100;hctx.fillStyle=this.color;hctx.beginPath();hctx.arc(this.x,this.y,2,0,Math.PI*2);hctx.fill();hctx.globalAlpha=1;} }
-    class Heart { constructor(){this.x=random(0,heartCanvas.width);this.y=random(-50,-10);this.size=random(10,30);this.speedY=random(1,3);this.color=`rgba(255,${Math.floor(random(100,200))},${Math.floor(random(100,200))},0.8)`;} update(){this.y+=this.speedY;if(this.y>heartCanvas.height){this.y=random(-50,-10);this.x=random(0,heartCanvas.width);}} draw(){hctx.fillStyle=this.color;hctx.beginPath();hctx.moveTo(this.x,this.y);hctx.bezierCurveTo(this.x-this.size/2,this.y-this.size/2,this.x-this.size,this.y+this.size/3,this.x,this.y+this.size);hctx.bezierCurveTo(this.x+this.size,this.y+this.size/3,this.x+this.size/2,this.y-this.size/2,this.x,this.y);hctx.fill();} }
+    function random(min, max) { return Math.random() * (max - min) + min; }
+    class Firework { constructor() { this.x = random(0, canvas.width); this.y = canvas.height; this.targetY = random(100, canvas.height / 2); this.color = `hsl(${random(0, 360)},100%,50%)`; this.exploded = false; this.life = 100; } update() { if (!this.exploded) { this.y -= 5; if (this.y <= this.targetY) this.explode(); } else this.life--; } draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, 3, 0, Math.PI * 2); ctx.fill(); } explode() { this.exploded = true; for (let i = 0; i < 50; i++) fireworks.push(new Particle(this.x, this.y, this.color)); } }
+    class Particle { constructor(x, y, color) { this.x = x; this.y = y; this.color = color; this.speedX = random(-3, 3); this.speedY = random(-3, 3); this.life = 100; } update() { this.x += this.speedX; this.y += this.speedY; this.life--; } draw() { hctx.globalAlpha = this.life / 100; hctx.fillStyle = this.color; hctx.beginPath(); hctx.arc(this.x, this.y, 2, 0, Math.PI * 2); hctx.fill(); hctx.globalAlpha = 1; } }
+    class Heart { constructor() { this.x = random(0, heartCanvas.width); this.y = random(-50, -10); this.size = random(10, 30); this.speedY = random(1, 3); this.color = `rgba(255,${Math.floor(random(100, 200))},${Math.floor(random(100, 200))},0.8)`; } update() { this.y += this.speedY; if (this.y > heartCanvas.height) { this.y = random(-50, -10); this.x = random(0, heartCanvas.width); } } draw() { hctx.fillStyle = this.color; hctx.beginPath(); hctx.moveTo(this.x, this.y); hctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size); hctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y); hctx.fill(); } }
 
     function typeAndAnimateText(text, element, speed = 150) {
       element.textContent = "";
@@ -310,7 +324,6 @@
         i++;
         if (i >= text.length) {
           clearInterval(typer);
-          element.style.borderRight = "none"; // 隱藏光標
           element.style.animation = "heartbeat 1s ease-in-out infinite"; // 開始心跳
         }
       }, speed);
@@ -320,23 +333,24 @@
       quizDiv.innerHTML = `<div class="final-text"></div>`;
       const finalTextEl = document.querySelector(".final-text");
       typeAndAnimateText("💍 Winny，嫁給我吧！💍", finalTextEl, 150);
-      setInterval(()=>fireworks.push(new Firework()),500);
-      for(let i=0;i<30;i++)hearts.push(new Heart());
+      setInterval(() => fireworks.push(new Firework()), 500);
+      for (let i = 0; i < 30; i++) hearts.push(new Heart());
       animate();
     }
 
-    function animate(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      fireworks.forEach((f,i)=>{f.update();f.draw();if(f.exploded&&f.life<=0)fireworks.splice(i,1);});
-      fireworks=fireworks.filter(f=>f.life>0||!f.exploded);
-      hctx.clearRect(0,0,heartCanvas.width,heartCanvas.height);
-      hearts.forEach(h=>{h.update();h.draw();});
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      fireworks.forEach((f, i) => { f.update(); f.draw(); if (f.exploded && f.life <= 0) fireworks.splice(i, 1); });
+      fireworks = fireworks.filter(f => f.life > 0 || !f.exploded);
+      hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+      hearts.forEach(h => { h.update(); h.draw(); });
       requestAnimationFrame(animate);
     }
 
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;heartCanvas.width=window.innerWidth;heartCanvas.height=window.innerHeight;}
-    window.addEventListener('resize',resizeCanvas);
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; heartCanvas.width = window.innerWidth; heartCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
   </script>
 </body>
+
 </html>
