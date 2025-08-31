@@ -90,11 +90,14 @@
       justify-content: center;
     }
 
-    .question button {
+    /* 修正 iPhone 按鈕點擊時的白/粉細線 */
+    button, #start-btn {
       padding: 10px 20px;
       font-size: clamp(14px, 3vw, 20px);
       border-radius: 10px;
       border: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
       cursor: pointer;
       background-color: rgba(139, 0, 84, 0.8);
       color: white;
@@ -109,10 +112,6 @@
       font-size: clamp(20px, 5vw, 28px);
       padding: 15px 30px;
       background-color: rgba(255, 20, 147, 0.8);
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
     }
 
     @media (hover: hover) {
@@ -127,11 +126,6 @@
       background-color: rgba(255, 20, 147, 1);
       transform: scale(1.1);
       box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-    }
-
-    @keyframes shine {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
     }
 
     @keyframes heartbeat {
@@ -207,6 +201,8 @@
       font-size: 16px;
       cursor: pointer;
       transition: 0.2s;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .popup button:hover {
@@ -238,7 +234,6 @@
   <canvas id="fireworks"></canvas>
   <canvas id="hearts"></canvas>
 
-  <!-- 浪漫彈窗 -->
   <div class="overlay" id="overlay">
     <div class="popup">
       <div class="heart">♥</div>
